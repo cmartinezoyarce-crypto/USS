@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>QYFA 1002 · Salud Pública: Fundamentos Históricos y Conceptuales</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul:#002151;
+  --azul-medio:#266aa6;
+  --azul-claro:#0f487a;
+  --azul-suave:#E8EFF6;
+  --dorado:#C9A84C;
+  --dorado-claro:#E8D5A3;
+  --blanco:#FFFFFF;
+  --gris-fondo:#F0F4F8;
+  --gris-texto:#374151;
+  --sidebar-w:290px;
+  --font-base:'Montserrat',system-ui,sans-serif;
+  --font-display:'Montserrat',system-ui,sans-serif;
+  --radius:14px;
+  --shadow:0 8px 32px rgba(0,33,81,0.10);
+  --shadow-lg:0 20px 48px rgba(0,33,81,0.16);
+  --transition:.18s cubic-bezier(.4,0,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-base);background:var(--gris-fondo);color:#1e293b;line-height:1.6;}
+
+/* PORTADA */
+.portada{
+  min-height:100vh;width:100%;
+  background:#002151;
+  background-image:url("portada.png");
+  background-size:cover;background-position:center;
+  background-blend-mode:multiply;
+  color:#fff;display:flex;flex-direction:column;
+  position:relative;overflow:hidden;
+}
+.portada-header{
+  padding:2rem 3rem;display:flex;align-items:center;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  position:relative;z-index:1;
+}
+.portada-header img{height:52px;}
+.portada-body{
+  flex:1;display:flex;align-items:center;padding:3rem 3rem 2rem;
+  position:relative;z-index:1;
+}
+.portada-sello{
+  position:absolute;right:-60px;top:50%;transform:translateY(-50%);
+  width:420px;height:420px;border-radius:50%;
+  border:1px solid rgba(255,255,255,0.06);
+  pointer-events:none;
+}
+.portada-sello::after{
+  content:'';position:absolute;inset:30px;border-radius:50%;
+  border:1px solid rgba(255,255,255,0.04);
+}
+.portada-text{max-width:600px;animation:fadeUp .7s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+.portada-label{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.4);
+  color:var(--dorado-claro);
+  border-radius:4px;padding:.3rem .9rem;font-size:.75rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.2rem;
+}
+.portada h1{
+  font-family:var(--font-display);font-weight:700;font-size:2.4rem;
+  line-height:1.15;margin-bottom:.5rem;color:#fff;letter-spacing:-.01em;
+}
+.portada-asign{font-size:.9rem;opacity:.6;margin-bottom:1rem;font-weight:500;letter-spacing:.03em;}
+.portada-sub{font-size:.97rem;line-height:1.85;opacity:.82;margin-bottom:2.2rem;max-width:520px;font-weight:300;}
+.btn-comenzar{
+  display:inline-flex;align-items:center;gap:.85rem;padding:.85rem 2rem;
+  border-radius:4px;border:none;cursor:pointer;
+  background:var(--dorado);color:#002151;
+  font-family:var(--font-base);font-size:.95rem;font-weight:700;
+  letter-spacing:.03em;
+  box-shadow:0 8px 24px rgba(201,168,76,0.35);
+  transition:var(--transition);
+}
+.btn-comenzar:hover{background:var(--dorado-claro);transform:translateY(-2px);}
+.btn-comenzar svg{transition:transform .15s ease;}
+.btn-comenzar:hover svg{transform:translateX(3px);}
+.portada-footer{
+  padding:1rem 3rem;border-top:3px solid var(--dorado);
+  background:rgba(0,0,0,0.15);
+  font-size:.75rem;opacity:.5;letter-spacing:.05em;text-transform:uppercase;
+  position:relative;z-index:1;
+}
+
+/* LAYOUT */
+#layout{display:none;}
+.layout{display:flex;min-height:100vh;}
+
+/* SIDEBAR */
+.sidebar{
+  position:fixed;inset:0 auto 0 0;width:var(--sidebar-w);
+  background:var(--azul);
+  color:white;padding:0;
+  display:flex;flex-direction:column;
+  box-shadow:4px 0 24px rgba(0,0,0,0.25);z-index:100;
+  transition:transform .3s cubic-bezier(.4,0,.2,1);
+}
+.sidebar-brand{
+  padding:1.1rem 1.25rem;border-bottom:1px solid rgba(255,255,255,0.08);
+  display:flex;justify-content:space-between;align-items:center;gap:.75rem;
+  background:rgba(0,0,0,0.2);
+}
+.sidebar-brand img{height:38px;width:auto;max-width:175px;object-fit:contain;flex:1;min-width:0;}
+.sidebar-top{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;}
+.sidebar-inner{padding:1rem 1.25rem 1.5rem;display:flex;flex-direction:column;gap:.9rem;flex:1;overflow:hidden;}
+.home-btn{
+  width:36px;height:36px;min-width:36px;border-radius:4px;border:1px solid rgba(255,255,255,0.2);
+  background:rgba(255,255,255,0.06);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:var(--transition);flex-shrink:0;
+}
+.home-btn:hover{background:rgba(255,255,255,0.15);}
+.home-btn img{width:16px;height:16px;}
+
+/* Progreso */
+.sidebar-progress{background:rgba(255,255,255,0.06);border-radius:8px;padding:.7rem .9rem;}
+.progress-label{display:flex;justify-content:space-between;align-items:center;font-size:.72rem;opacity:.6;margin-bottom:.45rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;}
+.progress-bar-bg{background:rgba(255,255,255,0.1);border-radius:999px;height:4px;overflow:hidden;}
+.progress-bar-fill{background:linear-gradient(90deg,var(--dorado),var(--dorado-claro));height:100%;border-radius:999px;transition:width .4s cubic-bezier(.4,0,.2,1);width:0%;}
+
+.sidebar-titulo{font-size:.78rem;line-height:1.4;opacity:.55;padding:.6rem 0;border-top:1px solid rgba(255,255,255,0.07);border-bottom:1px solid rgba(255,255,255,0.07);}
+.sidebar-titulo strong{display:block;font-size:.88rem;margin-top:.2rem;opacity:1;color:#fff;font-weight:600;}
+
+/* Nav */
+.nav-lateral{display:flex;flex-direction:column;gap:.15rem;overflow-y:auto;flex:1;padding-right:.2rem;}
+.nav-lateral::-webkit-scrollbar{width:3px;}
+.nav-lateral::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.12);border-radius:3px;}
+.nav-btn{
+  background:transparent;border:none;text-align:left;color:#fff;
+  padding:.48rem .6rem .48rem .75rem;font-family:var(--font-base);font-size:.8rem;
+  cursor:pointer;border-radius:4px;transition:var(--transition);line-height:1.3;
+  display:flex;align-items:center;gap:.6rem;opacity:.6;font-weight:500;
+}
+.nav-btn .nav-icon{
+  width:18px;height:18px;border-radius:3px;border:1px solid rgba(255,255,255,0.2);
+  background:transparent;display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;font-size:.6rem;transition:var(--transition);
+}
+.nav-btn:hover{opacity:.85;background:rgba(255,255,255,0.07);}
+.nav-btn.activo{opacity:1;font-weight:700;background:rgba(255,255,255,0.12);border-left:3px solid var(--dorado);}
+.nav-btn.activo .nav-icon{background:var(--dorado);border-color:var(--dorado);}
+.nav-btn.visitado .nav-icon{background:rgba(38,106,166,0.8);border-color:rgba(38,106,166,0.9);}
+.nav-btn.visitado .nav-icon::after{content:'✓';color:white;font-size:.6rem;font-weight:700;}
+
+/* Hamburger */
+.hamburger{
+  display:none;position:fixed;top:.75rem;right:1rem;z-index:200;
+  width:38px;height:38px;background:var(--azul);border:none;border-radius:6px;
+  cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:5px;
+  box-shadow:var(--shadow);
+}
+.hamburger span{display:block;width:18px;height:2px;background:white;border-radius:2px;}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:90;backdrop-filter:blur(2px);}
+
+/* MAIN */
+.main{margin-left:var(--sidebar-w);padding:2.5rem 2.4rem;width:100%;max-width:calc(var(--sidebar-w) + 840px);}
+.page{display:none;background:#fff;border-radius:var(--radius);padding:2.4rem;box-shadow:var(--shadow);animation:pageIn .28s ease both;}
+.page.activa{display:block;}
+@keyframes pageIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+.main-header-ruta{font-size:.72rem;color:#94a3b8;margin-bottom:.6rem;text-transform:uppercase;letter-spacing:.07em;font-weight:600;}
+.main h1{margin-top:0;color:var(--azul);font-family:var(--font-display);font-size:1.8rem;line-height:1.2;font-weight:700;margin-bottom:1.25rem;letter-spacing:-.01em;}
+.main h2{margin-top:1.75rem;margin-bottom:.5rem;color:var(--azul-medio);font-size:1rem;font-weight:700;display:flex;align-items:center;gap:.5rem;text-transform:uppercase;letter-spacing:.04em;}
+.main h2::before{content:'';display:block;width:4px;height:1em;background:var(--dorado);border-radius:2px;flex-shrink:0;}
+.main h3{margin-top:1.2rem;color:var(--azul);font-size:.97rem;font-weight:700;}
+.main p{line-height:1.9;margin:.6rem 0;font-size:.95rem;}
+.main ul{margin:.6rem 0 1.1rem 1.4rem;line-height:1.9;}
+.main li{margin-bottom:.4rem;font-size:.95rem;}
+.main strong{color:var(--azul);}
+
+/* Imagen */
+.tema-imagen{margin:1.2rem 0 1.75rem;text-align:center;}
+.tema-imagen img{max-width:100%;border-radius:var(--radius);box-shadow:var(--shadow-lg);display:block;margin:0 auto;}
+.tema-imagen figcaption{font-size:.84rem;color:#64748b;margin-top:.5rem;line-height:1.6;font-style:italic;}
+
+/* Tabla */
+.tabla-wrapper{overflow-x:auto;margin:1.4rem 0;}
+table{width:100%;border-collapse:collapse;font-size:.87rem;}
+thead tr{background:var(--azul);color:white;}
+thead th{padding:.75rem 1rem;text-align:left;font-weight:700;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase;}
+tbody tr{border-bottom:1px solid #e2e8f0;}
+tbody tr:nth-child(even){background:#f5f8fc;}
+tbody tr:hover{background:var(--azul-suave);}
+td{padding:.65rem 1rem;line-height:1.6;vertical-align:top;}
+td:first-child{font-weight:600;color:var(--azul);}
+
+/* Info box */
+.info-box{
+  margin:1.2rem 0;padding:1.1rem 1.3rem;border-radius:8px;
+  background:var(--azul-suave);border-left:4px solid var(--azul-medio);
+  font-size:.92rem;line-height:1.75;
+}
+.info-box .info-label{font-weight:700;color:var(--azul);font-size:.75rem;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.3rem;}
+
+/* Cita */
+.cita{
+  margin:1.2rem 0;padding:1rem 1.3rem 1rem 1.6rem;border-left:3px solid var(--dorado);
+  background:#fdfaf3;border-radius:0 8px 8px 0;font-style:italic;
+  font-size:.92rem;line-height:1.8;color:#4B5563;
+}
+.cita-autor{font-style:normal;font-weight:700;font-size:.8rem;color:var(--dorado);margin-top:.4rem;display:block;letter-spacing:.04em;}
+
+/* ACTIVIDAD */
+.actividad-bloque{
+  margin-top:2rem;padding:1.5rem 1.6rem;border-radius:var(--radius);
+  background:linear-gradient(135deg,#f0f5fb 0%,#f8faff 100%);
+  border:1px solid #d0dcea;position:relative;overflow:hidden;
+}
+.actividad-bloque::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--azul),var(--azul-medio));
+}
+.actividad-bloque h3{margin-top:0;margin-bottom:.85rem;display:flex;align-items:center;gap:.6rem;color:var(--azul);font-size:.97rem;font-weight:700;}
+.actividad-bloque h3::before{content:'';width:8px;height:8px;background:var(--dorado);border-radius:2px;flex-shrink:0;}
+.actividad-bloque label{
+  display:flex;align-items:flex-start;gap:.75rem;margin-bottom:.55rem;
+  padding:.65rem .75rem;border-radius:6px;cursor:pointer;transition:var(--transition);
+  background:rgba(255,255,255,0.75);border:1.5px solid transparent;
+  font-size:.92rem;line-height:1.65;
+}
+.actividad-bloque label:hover{background:rgba(255,255,255,0.97);border-color:rgba(0,33,81,0.2);}
+.actividad-bloque label input[type="radio"]{margin-top:.25rem;accent-color:var(--azul);flex-shrink:0;width:16px;height:16px;}
+.actividad-bloque label.correct-choice{background:#d1fae5;border-color:#34d399;}
+.actividad-bloque label.wrong-choice{background:#fee2e2;border-color:#f87171;}
+
+.btn-verificar{
+  margin-top:1rem;padding:.6rem 1.5rem;border-radius:4px;border:none;
+  background:var(--azul);color:white;cursor:pointer;
+  font-family:var(--font-base);font-size:.85rem;font-weight:700;letter-spacing:.04em;
+  transition:var(--transition);display:inline-flex;align-items:center;gap:.5rem;
+}
+.btn-verificar:hover{background:var(--azul-claro);transform:translateY(-1px);}
+.btn-verificar:disabled{opacity:.45;cursor:not-allowed;transform:none;}
+
+/* Feedback */
+.feedback{
+  margin-top:.85rem;font-size:.9rem;line-height:1.65;padding:.75rem 1rem;
+  border-radius:8px;font-weight:500;display:none;align-items:flex-start;gap:.6rem;animation:fadeUp .2s ease;
+}
+.feedback.visible{display:flex;}
+.feedback.ok{background:#d1fae5;color:#065f46;border:1px solid #6ee7b7;}
+.feedback.error{background:#fee2e2;color:#991b1b;border:1px solid #fca5a5;}
+.feedback-icon{font-size:1.1rem;flex-shrink:0;margin-top:.05rem;}
+
+/* Clasificación */
+.clasif-row{
+  display:flex;flex-wrap:wrap;align-items:center;gap:.75rem;margin-bottom:.6rem;
+  background:rgba(255,255,255,0.75);padding:.65rem .85rem;border-radius:8px;border:1.5px solid transparent;transition:var(--transition);
+}
+.clasif-row span{flex:1 1 260px;line-height:1.7;font-size:.91rem;}
+.clasif-row select{
+  padding:.4rem .65rem;border-radius:4px;border:1.5px solid #cbd5e1;
+  font-family:var(--font-base);font-size:.87rem;min-width:200px;background:#fff;
+  transition:var(--transition);cursor:pointer;
+}
+.clasif-row select:focus{outline:none;border-color:var(--azul);box-shadow:0 0 0 3px rgba(0,33,81,0.12);}
+.clasif-row.correct{background:#d1fae5;border-color:#34d399;}
+.clasif-row.incorrect{background:#fee2e2;border-color:#f87171;}
+
+/* DRAG & DROP */
+.drag-container{display:flex;gap:1.75rem;flex-wrap:wrap;margin-top:1rem;}
+.drag-items-label,.drop-zones-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#64748b;margin-bottom:.65rem;}
+.drag-item{
+  background:white;padding:.65rem 1rem;margin:.45rem 0;
+  border:1.5px solid #e2e8f0;border-radius:8px;cursor:grab;
+  box-shadow:0 2px 8px rgba(0,0,0,0.06);line-height:1.55;font-size:.88rem;
+  transition:var(--transition);user-select:none;
+  display:flex;align-items:flex-start;gap:.6rem;
+}
+.drag-item::before{content:'⠿';color:#94a3b8;font-size:1rem;flex-shrink:0;margin-top:.05rem;}
+.drag-item:hover{border-color:var(--azul-medio);box-shadow:0 4px 16px rgba(0,33,81,0.14);transform:translateY(-1px);}
+.drag-item.dragging{opacity:0;}
+.drag-item.placed{background:var(--azul-suave);border-color:var(--azul-medio);}
+@keyframes dropSnap{0%{transform:scale(1.05);}60%{transform:scale(.97);}100%{transform:scale(1);}}
+.drag-item.snapped{animation:dropSnap .25s ease;}
+
+.drop-zone-wrapper{margin-bottom:1rem;}
+.drop-zone-wrapper h4{font-size:.85rem;font-weight:700;color:var(--azul);margin-bottom:.45rem;display:flex;align-items:center;gap:.4rem;text-transform:uppercase;letter-spacing:.04em;}
+.drop-zone-wrapper h4::before{content:'';width:8px;height:8px;border-radius:2px;background:var(--dorado);flex-shrink:0;}
+.drop-zone{
+  background:#f5f8fc;min-height:90px;padding:.75rem;border-radius:8px;
+  border:2px dashed #b0c4d8;transition:var(--transition);position:relative;
+}
+.drop-zone.drag-over{background:var(--azul-suave);border-color:var(--azul-medio);box-shadow:0 0 0 3px rgba(0,33,81,0.08);}
+.drop-zone.correct{border:2px solid #34d399;background:#d1fae5;}
+.drop-zone.incorrect{border:2px solid #f87171;background:#fee2e2;}
+.drop-zone-placeholder{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;color:#94a3b8;font-size:.8rem;font-style:italic;}
+.drop-zone:not(:empty) .drop-zone-placeholder{display:none;}
+
+/* ORDENAMIENTO */
+.sort-container{display:flex;flex-direction:column;gap:.5rem;margin-top:.75rem;}
+.sort-item{
+  background:white;padding:.65rem 1rem;border:1.5px solid #e2e8f0;border-radius:8px;
+  cursor:grab;display:flex;align-items:center;gap:.75rem;font-size:.88rem;line-height:1.5;
+  transition:var(--transition);user-select:none;
+}
+.sort-item::before{content:'↕';color:#94a3b8;flex-shrink:0;font-size:.9rem;}
+.sort-item:hover{border-color:var(--azul-medio);box-shadow:0 2px 10px rgba(0,33,81,0.12);}
+.sort-item.dragging{opacity:.4;}
+.sort-item.over{border-color:var(--dorado);background:#fdfaf3;}
+
+/* Tarjetas modelos */
+.modelos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1rem;margin:1.2rem 0;}
+.modelo-card{padding:1.1rem 1.2rem;border-radius:var(--radius);border:1.5px solid #e2e8f0;background:white;transition:var(--transition);}
+.modelo-card:hover{box-shadow:var(--shadow);transform:translateY(-2px);}
+.modelo-card-tag{display:inline-block;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:.2rem .6rem;border-radius:3px;margin-bottom:.6rem;}
+.modelo-card h4{font-size:.95rem;color:var(--azul);margin-bottom:.4rem;font-weight:700;}
+.modelo-card p{font-size:.85rem;line-height:1.65;color:var(--gris-texto);}
+.tag-biomedico{background:#fef3c7;color:#92400e;}
+.tag-biopsicosocial{background:#dbeafe;color:#1e40af;}
+.tag-social{background:#d1fae5;color:#065f46;}
+
+/* Objetivo pill */
+.objetivo-pill{display:flex;align-items:flex-start;gap:.75rem;padding:.75rem 1rem;background:var(--azul-suave);border-radius:8px;margin-bottom:.5rem;font-size:.92rem;line-height:1.6;border-left:3px solid var(--azul-medio);}
+.objetivo-pill .pill-num{min-width:26px;height:26px;background:var(--azul);color:white;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0;}
+
+/* Badge fin */
+.badge-fin{margin:1.5rem 0;padding:1.25rem 1.5rem;background:linear-gradient(135deg,var(--azul),var(--azul-medio));border-radius:var(--radius);color:white;display:flex;align-items:center;gap:1rem;border-bottom:3px solid var(--dorado);}
+.badge-fin .badge-icon{font-size:2rem;}
+.badge-fin p{margin:0;line-height:1.6;font-weight:500;font-size:.95rem;}
+
+/* Nav flechas */
+.page-nav{margin-top:2.25rem;padding-top:1.5rem;border-top:1px solid #f1f5f9;display:flex;justify-content:flex-end;gap:.75rem;}
+.nav-arrow{width:48px;height:48px;border:none;border-radius:4px;background:var(--azul-suave);background-size:contain;background-position:center;background-repeat:no-repeat;cursor:pointer;transition:var(--transition);display:inline-flex;align-items:center;justify-content:center;font-size:1.3rem;color:var(--azul);}
+.nav-prev{background-image:url("b_atras02.png");}
+.nav-prev:hover,.nav-prev:focus{background-image:url("b_atras01.png");transform:scale(1.1);box-shadow:0 0 0 4px rgba(0,33,81,0.12);outline:none;}
+.nav-next{background-image:url("b_adelante02.png");}
+.nav-next:hover,.nav-next:focus{background-image:url("b_adelante01.png");transform:scale(1.1);box-shadow:0 0 0 4px rgba(0,33,81,0.12);outline:none;}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  .hamburger{display:flex;}
+  .sidebar{transform:translateX(calc(-1 * var(--sidebar-w)));}
+  .sidebar.open{transform:translateX(0);}
+  .overlay.open{display:block;}
+  .main{margin-left:0;padding:1.5rem 1.2rem;padding-top:4rem;}
+  .portada-body{padding:2rem 1.5rem;}
+  .portada h1{font-size:1.8rem;}
+  .portada-sello{display:none;}
+  .portada-header{padding:1.2rem 1.5rem;}
+  .portada-footer{padding:.75rem 1.5rem;}
+  .drag-container{flex-direction:column;}
+  .clasif-row{flex-direction:column;align-items:flex-start;}
+  .clasif-row select{min-width:100%;width:100%;}
+}
+</style>
+</head>
+<body>
+
+<!-- PORTADA -->
+<section class="portada" id="portada">
+  <div class="portada-sello"></div>
+  <div class="portada-header">
+    <img src="logo.png" alt="Universidad San Sebastián">
+  </div>
+  <div class="portada-body">
+    <div class="portada-text">
+      <span class="portada-label">QYFA 1002 · Sesión 1</span>
+      <p class="portada-asign">Química y Farmacia &nbsp;·&nbsp; Salud Pública</p>
+      <h1>Fundamentos Históricos y Conceptuales de la Salud Pública</h1>
+      <p class="portada-sub">Del paradigma higienista al enfoque poblacional contemporáneo. Modelos explicativos del proceso salud–enfermedad y su relevancia para el ejercicio profesional del químico farmacéutico.</p>
+      <button class="btn-comenzar" type="button" onclick="startCourse()">
+        Comenzar
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="portada-footer">Universidad San Sebastián · Material de Apoyo Docente</div>
+</section>
+
+<div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+<button class="hamburger" id="hamburger" onclick="toggleSidebar()" aria-label="Menú" style="display:none;">
+  <span></span><span></span><span></span>
+</button>
+
+<!-- LAYOUT -->
+<div id="layout" class="layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <img src="logo.png" alt="Universidad San Sebastián">
+      <button class="home-btn" type="button" onclick="goBackToCover()" title="Volver a portada">
+        <img src="home.png" alt="Inicio">
+      </button>
+    </div>
+    <div class="sidebar-inner">
+      <div class="sidebar-progress">
+        <div class="progress-label"><span>Progreso</span><span id="progressText">0%</span></div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
+      </div>
+      <div class="sidebar-titulo">QYFA 1002 · Sesión 1<strong>Fundamentos Históricos y Conceptuales</strong></div>
+      <nav class="nav-lateral">
+        <button data-page="bienvenida" class="nav-btn activo"><span class="nav-icon"></span>Bienvenida</button>
+        <button data-page="objetivos" class="nav-btn"><span class="nav-icon"></span>Objetivos de aprendizaje</button>
+        <button data-page="tema1" class="nav-btn"><span class="nav-icon"></span>1. Surgimiento histórico</button>
+        <button data-page="tema1b" class="nav-btn"><span class="nav-icon"></span>1.2 El caso John Snow</button>
+        <button data-page="tema2" class="nav-btn"><span class="nav-icon"></span>2. Configuración conceptual</button>
+        <button data-page="tema3" class="nav-btn"><span class="nav-icon"></span>3. Modelos explicativos</button>
+        <button data-page="tema4" class="nav-btn"><span class="nav-icon"></span>4. Contexto contemporáneo</button>
+        <button data-page="tema5" class="nav-btn"><span class="nav-icon"></span>5. Legado de John Snow</button>
+        <button data-page="eval" class="nav-btn"><span class="nav-icon"></span>Evaluación formativa</button>
+        <button data-page="conclusiones" class="nav-btn"><span class="nav-icon"></span>Conclusiones</button>
+        <button data-page="referencias" class="nav-btn"><span class="nav-icon"></span>Referencias</button>
+      </nav>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <!-- BIENVENIDA -->
+    <section class="page activa" id="page-bienvenida">
+      <div class="main-header-ruta">QYFA 1002 &raquo; Bienvenida</div>
+      <h1>Bienvenida</h1>
+      <p>Te damos la bienvenida a este recurso interactivo correspondiente a la <strong>Sesión 1</strong> de la asignatura Salud Pública, carrera de Química y Farmacia.</p>
+      <p>A lo largo de este material revisarás los fundamentos históricos y conceptuales de la Salud Pública, desde sus orígenes en el paradigma higienista del siglo XIX hasta los enfoques poblacionales contemporáneos.</p>
+      <p>Te invitamos a interactuar con los contenidos, los que complementan el cuaderno de apunte y los demás recursos disponibles en el aula virtual. Cada sección incluye actividades de aplicación que te permitirán evaluar tu comprensión.</p>
+      <div class="page-nav">
+        <button class="nav-arrow nav-prev" type="button" onclick="goPrevPage()">←</button>
+        <button class="nav-arrow nav-next" type="button" onclick="goNextPage()">→</button>
+      </div>
+    </section>
+
+    <!-- OBJETIVOS -->
+    <section class="page" id="page-objetivos">
+      <div class="main-header-ruta">QYFA 1002 &raquo; Objetivos</div>
+      <h1>Objetivos de aprendizaje</h1>
+      <p>Al finalizar el estudio de esta sesión, serás capaz de:</p>
+      <div class="objetivo-pill"><span class="pill-num">1</span>Analizar el surgimiento histórico de la Salud Pública desde el paradigma higienista hasta el enfoque poblacional contemporáneo, reconociendo sus transformaciones conceptuales y sanitarias.</div>
+      <div class="objetivo-pill"><span class="pill-num">2</span>Examinar críticamente los principales modelos explicativos del proceso salud–enfermedad (biomédico, biopsicosocial y determinación social), identificando sus fundamentos epistemológicos.</div>
+      <div class="objetivo-pill"><span class="pill-num">3</span>Integrar el caso John Snow como hito fundacional en el desarrollo de la epidemiología moderna y de la Salud Pública basada en evidencia.</div>
+      <div class="objetivo-pill"><span class="pill-num">4</span>Fundamentar la relevancia actual de la Salud Pública para el ejercicio profesional en Química y Farmacia, en contextos sanitarios contemporáneos.</div>
+      <div class="page-nav">
+        <button class="nav-arrow nav-prev" type="button" onclick="goPrevPage()">←</button>
+        <button class="nav-arrow nav-next" type="button" onclick="goNextPage()">→</button>
+      </div>
+    </section>
+
+    <!-- TEMA 1 -->
+    <section class="page" id="page-tema1">
+      <div class="main-header-ruta">QYFA 1002 &raquo; Tema 1</div>
+      <h1>1. Surgimiento histórico de la Salud Pública</h1>
+      <h2>Del higienismo al pensamiento poblacional</h2>
+
+      <h3>1.1 Contexto social y sanitario del siglo XIX</h3>
+      <p>La Salud Pública no emerge como disciplina acabada, sino como respuesta histórica a crisis sanitarias vinculadas a procesos sociales específicos. El siglo XIX estuvo marcado por la Revolución Industrial, la urbanización acelerada y condiciones de hacinamiento que favorecieron epidemias de cólera, tuberculosis y fiebre tifoidea.</p>
+
+      <div class="info-box">
+        <div class="info-label">Teorías en tensión</div>
+        La comprensión de la enfermedad oscilaba entre las <strong>teorías miasmáticas</strong> —que atribuían los brotes a emanaciones insalubres del ambiente— y aproximaciones incipientes basadas en observación empírica.
+      </div>
+
+      <p>El paradigma higienista constituyó el primer intento sistemático de intervenir colectivamente sobre las condiciones ambientales. Su foco estaba puesto en el saneamiento urbano, el alcantarillado, el acceso al agua potable y la regulación de espacios públicos.</p>
+
+      <div class="cita">
+        El higienismo representó la transición desde una medicina individual centrada en el tratamiento hacia una preocupación estatal por la salud colectiva, sentando las bases para la institucionalización de la Salud Pública como campo disciplinar.
+        <span class="cita-autor">— León, 2016</span>
+      </div>
+
+      <h2>Evolución histórica de la Salud Pública</h2>
+      <div class="tabla-wrapper">
+        <table>
+          <thead><tr><th>Etapa histórica</th><th>Período aprox.</th><th>Enfoque predominante</th><th>Aporte conceptual</th></tr></thead>
+          <tbody>
+            <tr><td>Higienismo</td><td>Siglo XIX</td><td>Saneamiento ambiental y control urbano</td><td>Introduce prevención colectiva y responsabilidad estatal</td></tr>
+            <tr><td>Epidemiología temprana</td><td>1850–1900</td><td>Observación poblacional</td><td>Uso de datos empíricos para explicar brotes (John Snow)</td></tr>
+            <tr><td>Revolución microbiológica</td><td>Finales XIX</td><td>Agente etiológico específico</td><td>Consolidación del modelo biomédico</td></tr>
+            <tr><td>Medicina social</td><td>Siglo XX</td><td>Condiciones laborales y pobreza</td><td>Incorporación de factores sociales</td></tr>
+            <tr><td>Enfoque poblacional contemporáneo</td><td>Siglo XXI</td><td>Determinantes sociales y gobernanza sanitaria</td><td>Integración de equidad, vigilancia y políticas públicas</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ACTIVIDAD TEMA 1 -->
+      <div class="actividad-bloque" id="act1">
+        <h3>Actividad 1 · Comprensión del higienismo</h3>
+        <p><strong>Pregunta:</strong> ¿Cuál fue el aporte fundamental del paradigma higienista a la Salud Pública?</p>
+        <form id="form1">
+          <label><input type="radio" name="q1" value="ok"> Introdujo la prevención colectiva mediante saneamiento ambiental y responsabilidad estatal, aunque sin base microbiológica consolidada.</label>
+          <label><input type="radio" name="q1" value="x1"> Desarrolló la teoría microbiológica de las enfermedades infecciosas con Pasteur y Koch.</label>
+          <label><input type="radio" name="q1" value="x2"> Estableció los modelos biopsicosociales como base del diagnóstico médico.</label>
+          <label><input type="radio" name="q1" value="x3"> Creó los primeros sistemas de farmacovigilancia para medicamentos.</label>
+          <button class="btn-verificar" type="button" onclick="checkMCQ('q1','ok','feedback1','form1')">Verificar respuesta</button>
+        </form>
+        <div class="feedback" id="feedback1"><span class="feedback-icon"></span><span class="feedback-text"></span></div>
+      </div>
+
+      <div class="page-nav">
+        <button class="nav-arrow nav-prev" type="button" onclick="goPrevPage()">←</button>
+        <button class="nav-arrow nav-next" type="button" onclick="goNextPage()">→</button>
+      </div>
+    </section>
+
+    <!-- TEMA 1B: John Snow -->
+    <section class="page" id="page-tema1b">
+      <div class="main-header-ruta">QYFA 1002 &raquo; Tema 1</div>
+      <h1>1.2 El caso John Snow y la epidemia de cólera de 1854</h1>
+
+      <p>El brote de cólera en el barrio de Soho, Londres, en 1854, constituye un <strong>punto de inflexión epistemológico</strong>. John Snow, médico británico, cuestionó la teoría miasmática dominante y planteó que la transmisión del cólera estaba asociada al consumo de agua contaminada.</p>
+
+      <div class="info-box">
+        <div class="info-label">Método de Snow</div>
+        Snow elaboró un mapa georreferenciado de los casos, identificando una concentración alrededor de la bomba de agua de Broad Street. La remoción de la manivela de la bomba redujo significativamente los nuevos casos.
+      </div>
+
+      <h2>Los tres elementos estructurantes de Snow</h2>
+      <div class="objetivo-pill"><span class="pill-num">1</span>Observación sistemática de casos.</div>
+      <div class="objetivo-pill"><span class="pill-num">2</span>Uso de datos empíricos para formular hipótesis.</div>
+      <div class="objetivo-pill"><span class="pill-num">3</span>Intervención sanitaria basada en evidencia.</div>
+
+      <p style="margin-top:1rem;">Este enfoque anticipa el <strong>modelo poblacional contemporáneo</strong>, en el cual la distribución de eventos de salud en grupos humanos constituye el objeto central de análisis.</p>
+
+      <!-- ACTIVIDAD: Ordenamiento cronológico (drag sort) -->
+      <div class="actividad-bloque" id="act1b">
+        <h3>Actividad 1.2 · Ordenamiento metodológico</h3>
+        <p><strong>Instrucción:</strong> Arrastra los pasos del método de John Snow en el orden correcto en que se realizaron.</p>
+        <div class="sort-container" id="sortContainer">
+          <div class="sort-item" draggable="true" data-order="3">Intervención: remoción de la manivela de la bomba de agua.</div>
+          <div class="sort-item" draggable="true" data-order="1">Observación sistemática de casos de cólera en Soho.</div>
+          <div class="sort-item" draggable="true" data-order="4">Reducción de nuevos casos tras la intervención.</div>
+          <div class="sort-item" draggable="true" data-order="2">Elaboración de mapa georreferenciado e hipótesis sobre el agua contaminada.</div>
+        </div>
+        <button class="btn-verificar" type="button" onclick="checkSort('feedbackSort')" style="margin-top:1rem;">Verificar orden</button>
+        <div class="feedback" id="feedbackSort"><span class="feedback-icon"></span><span class="feedback-text"></span></div>
+      </div>
+
+      <div class="page-nav">
+        <button class="nav-arrow nav-prev" type="button" onclick="goPrevPage()">←</button>
+        <button class="nav-arrow nav-next" type="button" onclick="goNextPage()">→</button>
+      </div>
+    </section>
+
+    <!-- TEMA 2 -->
+    <section class="page" id="page-tema2">
+      <div class="main-header-ruta">QYFA 1002 &raquo; Tema 2</div>
+      <h1>2. Configuración conceptual de la Salud Pública</h1>
+
+      <h2>2.1 De la medicina social a la institucionalización sanitaria</h2>
+      <p>Durante el siglo XX, la consolidación de la teoría microbiana con Pasteur y Koch fortaleció el control de enfermedades infecciosas. Paralelamente, la medicina social europea incorporó el análisis de condiciones laborales, pobreza y desigualdad como determinantes de enfermedad.</p>
+      <p>La creación de la <strong>OMS en 1948</strong> formalizó la Salud Pública como campo de acción global. Su definición clásica de salud —estado de completo bienestar físico, mental y social— amplió el marco más allá de la ausencia de enfermedad.</p>
+
+      <div class="info-box">
+        <div class="info-label">FESP 2024–2034 (OPS)</div>
+        La Organización Panamericana de la Salud actualizó las Funciones Esenciales de Salud Pública enfatizando: vigilancia epidemiológica, regulación sanitaria, promoción de la salud y gobernanza basada en equidad.
+      </div>
+
+      <h2>2.2 Salud Pública como campo interdisciplinario</h2>
+      <p>La Salud Pública articula <strong>epidemiología, bioestadística, políticas sanitarias, farmacovigilancia, regulación de medicamentos y promoción de la salud</strong>. La disciplina se estructura alrededor de un principio central: la salud no es únicamente un fenómeno biológico individual, sino un fenómeno <strong>poblacional determinado por múltiples variables interdependientes</strong>.</p>
+
+      <!-- ACTIVIDAD: Clasificación -->
+      <div class="actividad-bloque" id="act2">
+        <h3>Actividad 2 · Clasificación de funciones</h3>
+        <p><strong>Instrucción:</strong> Asocia cada función con el organismo o hito que la estableció.</p>
+        <form id="form2">
+          <div class="clasif-row" data-correcta="oms">
+            <span>Definición de salud como estado de completo bienestar físico, mental y social.</span>
+            <select>
+              <option value="">Selecciona...</option>
+              <option value="oms">OMS (1948)</option>
+              <option value="ops">OPS (2024)</option>
+              <option value="snow">John Snow (1854)</option>
+              <option value="higienismo">Higienismo (s. XIX)</option>
+            </select>
+          </div>
+          <div class="clasif-row" data-correcta="ops">
+            <span>Actualización de las FESP con énfasis en gobernanza basada en equidad.</span>
+            <select>
+              <option value="">Selecciona...</option>
+              <option value="oms">OMS (1948)</option>
+              <option value="ops">OPS (2024)</option>
+              <option value="snow">John Snow (1854)</option>
+              <option value="higienismo">Higienismo (s. XIX)</option>
+            </select>
+          </div>
+          <div class="clasif-row" data-correcta="higienismo">
+            <span>Saneamiento urbano, alcantarillado y regulación de espacios públicos como intervención colectiva.</span>
+            <select>
+              <option value="">Selecciona...</option>
+              <option value="oms">OMS (1948)</option>
+              <option value="ops">OPS (2024)</option>
+              <option value="snow">John Snow (1854)</option>
+              <option value="higienismo">Higienismo (s. XIX)</option>
+            </select>
+          </div>
+          <div class="clasif-row" data-correcta="snow">
+            <span>Primer uso de mapa georreferenciado para análisis epidemiológico y toma de decisión sanitaria.</span>
+            <select>
+              <option value="">Selecciona...</option>
+              <option value="oms">OMS (1948)</option>
+              <option value="ops">OPS (2024)</option>
+              <option value="snow">John Snow (1854)</option>
+              <option value="higienismo">Higienismo (s. XIX)</option>
+            </select>
+          </div>
+          <button class="btn-verificar" type="button" onclick="checkClasificacion('act2','feedback2')">Verificar respuestas</button>
+        </form>
+        <div class="feedback" id="feedback2"><span class="feedback-icon"></span><span class="feedback-text"></span></div>
+      </div>
+
+      <div class="page-nav">
+        <button class="nav-arrow nav-prev" type="button" onclick="goPrevPage()">←</button>
+        <button class="nav-arrow nav-next" type="button" onclick="goNextPage()">→</button>
+      </div>
+    </section>
+
+    <!-- TEMA 3: MODELOS -->
+    <section class="page" id="page-tema3">
+      <div class="main-header-ruta">QYFA 1002 &raquo; Tema 3</div>
+      <h1>3. Modelos explicativos del proceso salud–enfermedad</h1>
+
+      <div class="modelos-grid">
+        <div class="modelo-card">
+          <span class="modelo-card-tag tag-biomedico">Biomédico</span>
+          <h4>Modelo Biomédico</h4>
+          <p>Enfermedad como alteración orgánica identificable. Causalidad lineal, intervención farmacológica o quirúrgica. Sustenta la investigación clínica y el diseño de medicamentos.</p>
+        </div>
+        <div class="modelo-card">
+          <span class="modelo-card-tag tag-biopsicosocial">Biopsicosocial</span>
+          <h4>Modelo Biopsicosocial</h4>
+          <p>Propuesto por George Engel (1977). Integra dimensiones psicológicas y sociales. Causalidad multifactorial. Permite comprender adherencia terapéutica y comportamiento de riesgo.</p>
+        </div>
+        <div class="modelo-card">
+          <span class="modelo-card-tag tag-social">Determinación Social</span>
+          <h4>Determinación Social</h4>
+          <p>Desarrollado en América Latina. Salud condicionada por sistemas económicos, relaciones de poder y desigualdades estructurales. Exige intervenciones que trasciendan el ámbito clínico.</p>
+        </div>
+      </div>
+
+      <h2>Comparación estructural de los modelos</h2>
+      <div class="tabla-wrapper">
+        <table>
+          <thead><tr><th>Dimensión</th><th>Modelo Biomédico</th><th>Modelo Biopsicosocial</th><th>Determinación Social</th></tr></thead>
+          <tbody>
+            <tr><td>Unidad de análisis</td><td>Individuo</td><td>Individuo en contexto</td><td>Colectividad estructural</td></tr>
+            <tr><td>Causalidad</td><td>Lineal, específica</td><td>Multifactorial</td><td>Estructural e histórica</td></tr>
+            <tr><td>Enfoque terapéutico</td><td>Intervención clínica</td><td>Intervención integral</td><td>Política pública</td></tr>
+            <tr><td>Rol del medicamento</td><td>Central</td><td>Parte de intervención</td><td>Insumo condicionado por acceso</td></tr>
+            <tr><td>Implicancia en SP</td><td>Control enfermedad</td><td>Prevención conductual</td><td>Reducción inequidades</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ACTIVIDAD: Drag & Drop -->
+      <div class="actividad-bloque" id="act3">
+        <h3>Actividad 3 · Clasificar características por modelo</h3>
+        <p><strong>Instrucción:</strong> Arrastra cada característica al modelo que corresponde.</p>
+        <div class="drag-container">
+          <div>
+            <p class="drag-items-label">Características</p>
+            <div id="drag-pool-3" class="drag-items">
+              <div class="drag-item" draggable="true" data-cat="biomedico">Causalidad lineal y reduccionismo biológico.</div>
+              <div class="drag-item" draggable="true" data-cat="social">Análisis estructural e histórico de inequidades.</div>
+              <div class="drag-item" draggable="true" data-cat="biopsicosocial">Causalidad multifactorial y sistémica.</div>
+              <div class="drag-item" draggable="true" data-cat="biomedico">Precisión diagnóstica y desarrollo terapéutico.</div>
+              <div class="drag-item" draggable="true" data-cat="social">Intervenciones que trasciendan el ámbito clínico.</div>
+              <div class="drag-item" draggable="true" data-cat="biopsicosocial">Comprensión de adherencia y comportamiento de riesgo.</div>
+            </div>
+          </div>
+          <div>
+            <p class="drop-zones-label">Modelos</p>
+            <div class="drop-zone-wrapper">
+              <h4>Modelo Biomédico</h4>
+              <div class="drop-zone" data-zone="biomedico" id="zone-biomedico"><span class="drop-zone-placeholder">Suelta aquí</span></div>
+            </div>
+            <div class="drop-zone-wrapper">
+              <h4>Modelo Biopsicosocial</h4>
+              <div class="drop-zone" data-zone="biopsicosocial" id="zone-biopsicosocial"><span class="drop-zone-placeholder">Suelta aquí</span></div>
+            </div>
+            <div class="drop-zone-wrapper">
+              <h4>Determinación Social</h4>
+              <div class="drop-zone" data-zone="social" id="zone-social"><span class="drop-zone-placeholder">Suelta aquí</span></div>
+            </div>
+          </div>
+        </div>
+        <button class="btn-verificar" type="button" onclick="checkDragDrop3('feedback3')" style="margin-top:1rem;">Verificar</button>
+        <div class="feedback" id="feedback3"><span class="feedback-icon"></span><span class="feedback-text"></span></div>
+      </div>
+
+      <div class="page-nav">
+        <button class="nav-arrow nav-prev" type="button" onclick="goPrevPage()">←</button>
+        <button class="nav-arrow nav-next" type="button" onclick="goNextPage()">→</button>
+      </div>
+    </section>
+
+    <!-- TEMA 4 -->
+    <section class="page" id="page-tema4">
+      <div class="main-header-ruta">QYFA 1002 &raquo; Tema 4</div>
+      <h1>4. Implicancias en el contexto contemporáneo</h1>
+
+      <h2>4.1 Transición epidemiológica</h2>
+      <p>Las sociedades contemporáneas experimentan una transición desde enfermedades infecciosas hacia <strong>enfermedades crónicas no transmisibles</strong>. Sin embargo, las crisis sanitarias recientes —como la pandemia por COVID-19— demuestran la coexistencia de ambos perfiles.</p>
+
+      <h2>4.2 Regulación farmacéutica y Salud Pública</h2>
+      <p>Para Química y Farmacia, la Salud Pública implica garantizar calidad y seguridad de medicamentos, participar en farmacovigilancia, evaluar el impacto poblacional de intervenciones farmacológicas y contribuir a políticas de acceso racional.</p>
+
+      <h2>4.3 Transición y perfil farmacológico poblacional</h2>
+      <p>El desplazamiento hacia enfermedades crónicas modifica el patrón de consumo farmacológico: mayor uso de antihipertensivos, hipoglicemiantes orales, estatinas y aumento de la polifarmacia en población envejecida.</p>
+
+      <h2>4.4 FESP y rol del químico farmacéutico</h2>
+      <div class="tabla-wrapper">
+        <table>
+          <thead><tr><th>Modelo</th><th>Intervención predominante</th><th>Impacto en práctica farmacéutica</th></tr></thead>
+          <tbody>
+            <tr><td>Biomédico</td><td>Tratamiento individual</td><td>Dispensación técnica</td></tr>
+            <tr><td>Biopsicosocial</td><td>Educación terapéutica</td><td>Consejería farmacéutica</td></tr>
+            <tr><td>Determinación social</td><td>Política de acceso</td><td>Gestión sanitaria y regulación</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ACTIVIDAD MCQ -->
+      <div class="actividad-bloque" id="act4">
+        <h3>Actividad 4 · Rol del químico farmacéutico</h3>
+        <p><strong>Situación:</strong> Un profesional de Química y Farmacia participa en un comité que evalúa las políticas de acceso a medicamentos para enfermedades crónicas en una región de alta pobreza.</p>
+        <p><strong>Pregunta:</strong> ¿Desde qué modelo de Salud Pública se fundamenta principalmente esta intervención?</p>
+        <form id="form4">
+          <label><input type="radio" name="q4" value="ok"> Determinación social de la salud, ya que aborda inequidades estructurales en el acceso a medicamentos.</label>
+          <label><input type="radio" name="q4" value="x1"> Modelo biomédico, dado que se centra en la eficacia clínica de los medicamentos.</label>
+          <label><input type="radio" name="q4" value="x2"> Modelo biopsicosocial, porque considera el comportamiento individual de los pacientes.</label>
+          <label><input type="radio" name="q4" value="x3"> Higienismo, ya que prioriza el control ambiental de las condiciones de salud.</label>
+          <button class="btn-verificar" type="button" onclick="checkMCQ('q4','ok','feedback4','form4')">Verificar respuesta</button>
+        </form>
+        <div class="feedback" id="feedback4"><span class="feedback-icon"></span><span class="feedback-text"></span></div>
+      </div>
+
+      <div class="page-nav">
+        <button class="nav-arrow nav-prev" type="button" onclick="goPrevPage()">←</button>
+        <button class="nav-arrow nav-next" type="button" onclick="goNextPage()">→</button>
+      </div>
+    </section>
+
+    <!-- TEMA 5 -->
+    <section class="page" id="page-tema5">
+      <div class="main-header-ruta">QYFA 1002 &raquo; Tema 5</div>
+      <h1>5. El legado de John Snow en la práctica actual</h1>
+      <p>El caso John Snow no es una anécdota histórica, sino un <strong>paradigma metodológico</strong>. Introdujo el análisis espacial de datos, la hipótesis basada en observación empírica y la intervención sustentada en evidencia.</p>
+      <p>Hoy, la vigilancia epidemiológica digital, el análisis de big data sanitario y los sistemas de notificación obligatoria constituyen expresiones contemporáneas de esa misma lógica.</p>
+
+      <div class="info-box">
+        <div class="info-label">Continuidad metodológica</div>
+        El tránsito desde el higienismo hacia el enfoque poblacional contemporáneo revela una progresiva sofisticación conceptual: de la intervención ambiental empírica a la comprensión estructural de determinantes sociales.
+      </div>
+
+      <!-- ACTIVIDAD: Verdadero/Falso como MCQ -->
+      <div class="actividad-bloque" id="act5">
+        <h3>Actividad 5 · Integración conceptual</h3>
+        <p><strong>Pregunta:</strong> ¿Cuál afirmación describe mejor la relevancia actual del caso John Snow para la Salud Pública?</p>
+        <form id="form5">
+          <label><input type="radio" name="q5" value="ok"> Representa un paradigma metodológico vigente: análisis de datos poblacionales, hipótesis basada en evidencia e intervención sustentada en resultados.</label>
+          <label><input type="radio" name="q5" value="x1"> Es un evento histórico superado, reemplazado completamente por la microbiología moderna.</label>
+          <label><input type="radio" name="q5" value="x2"> Su relevancia se limita a enfermedades transmitidas por agua, sin aplicación en epidemias contemporáneas.</label>
+          <label><input type="radio" name="q5" value="x3"> Demostró que el modelo miasmático era correcto, ya que el agua no estaba contaminada.</label>
+          <button class="btn-verificar" type="button" onclick="checkMCQ('q5','ok','feedback5','form5')">Verificar respuesta</button>
+        </form>
+        <div class="feedback" id="feedback5"><span class="feedback-icon"></span><span class="feedback-text"></span></div>
+      </div>
+
+      <div class="page-nav">
+        <button class="nav-arrow nav-prev" type="button" onclick="goPrevPage()">←</button>
+        <button class="nav-arrow nav-next" type="button" onclick="goNextPage()">→</button>
+      </div>
+    </section>
+
+    <!-- EVALUACIÓN -->
+    <section class="page" id="page-eval">
+      <div class="main-header-ruta">QYFA 1002 &raquo; Evaluación formativa</div>
+      <h1>Evaluación formativa</h1>
+
+      <!-- Q1 -->
+      <div class="actividad-bloque" id="eval1" style="margin-bottom:1.5rem;">
+        <h3>Pregunta 1 · Epistemología de los modelos</h3>
+        <p><strong>Situación:</strong> Una investigadora estudia cómo la pobreza urbana y la falta de acceso a agua potable generan tasas diferenciadas de enfermedades diarreicas entre comunas de una misma ciudad.</p>
+        <p><strong>Pregunta:</strong> ¿Desde qué marco epistemológico se aborda este estudio?</p>
+        <form id="formE1">
+          <label><input type="radio" name="qE1" value="ok"> Determinación social de la salud, ya que analiza estructuras históricas y desigualdades que condicionan exposición diferencial al riesgo.</label>
+          <label><input type="radio" name="qE1" value="x1"> Modelo biomédico, porque estudia la patología diarreica a nivel molecular.</label>
+          <label><input type="radio" name="qE1" value="x2"> Modelo biopsicosocial, dado que considera factores psicológicos en la conducta alimentaria.</label>
+          <label><input type="radio" name="qE1" value="x3"> Higienismo, ya que el foco es el acceso al agua como medida de saneamiento individual.</label>
+          <button class="btn-verificar" type="button" onclick="checkMCQ('qE1','ok','feedbackE1','formE1')">Verificar</button>
+        </form>
+        <div class="feedback" id="feedbackE1"><span class="feedback-icon"></span><span class="feedback-text"></span></div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="actividad-bloque" id="eval2">
+        <h3>Pregunta 2 · Identificar aportes históricos</h3>
+        <p><strong>Instrucción:</strong> Asocia cada aporte con su origen histórico correcto.</p>
+        <form id="formE2">
+          <div class="clasif-row" data-correcta="microbiologia">
+            <span>Consolidación del control de enfermedades infecciosas mediante vacunación y aislamiento.</span>
+            <select><option value="">Selecciona...</option><option value="higienismo">Higienismo</option><option value="microbiologia">Revolución microbiológica</option><option value="medicina_social">Medicina social</option><option value="oms">OMS / s. XX</option></select>
+          </div>
+          <div class="clasif-row" data-correcta="medicina_social">
+            <span>Incorporación del análisis de condiciones laborales y desigualdad como determinantes de enfermedad.</span>
+            <select><option value="">Selecciona...</option><option value="higienismo">Higienismo</option><option value="microbiologia">Revolución microbiológica</option><option value="medicina_social">Medicina social</option><option value="oms">OMS / s. XX</option></select>
+          </div>
+          <div class="clasif-row" data-correcta="higienismo">
+            <span>Primer intento sistemático de intervención colectiva sobre el ambiente urbano sin teoría microbiológica.</span>
+            <select><option value="">Selecciona...</option><option value="higienismo">Higienismo</option><option value="microbiologia">Revolución microbiológica</option><option value="medicina_social">Medicina social</option><option value="oms">OMS / s. XX</option></select>
+          </div>
+          <button class="btn-verificar" type="button" onclick="checkClasificacion('eval2','feedbackE2')">Verificar</button>
+        </form>
+        <div class="feedback" id="feedbackE2"><span class="feedback-icon"></span><span class="feedback-text"></span></div>
+      </div>
+
+      <div class="page-nav">
+        <button class="nav-arrow nav-prev" type="button" onclick="goPrevPage()">←</button>
+        <button class="nav-arrow nav-next" type="button" onclick="goNextPage()">→</button>
+      </div>
+    </section>
+
+    <!-- CONCLUSIONES -->
+    <section class="page" id="page-conclusiones">
+      <div class="main-header-ruta">QYFA 1002 &raquo; Conclusiones</div>
+      <h1>Conclusiones</h1>
+      <p>La Salud Pública surge como respuesta histórica a crisis sanitarias colectivas y evoluciona desde el higienismo ambiental hacia un <strong>enfoque poblacional complejo e interdisciplinario</strong>. El caso John Snow simboliza el momento en que la observación sistemática y el análisis empírico transformaron la comprensión de la enfermedad en fenómeno colectivo.</p>
+      <p>Los modelos explicativos reflejan distintas concepciones epistemológicas: el biomédico privilegia la causalidad orgánica; el biopsicosocial incorpora dimensiones psicológicas; la determinación social sitúa la salud en estructuras históricas y políticas.</p>
+      <p>Para la formación en Química y Farmacia, comprender esta evolución significa reconocer que la <strong>regulación de medicamentos, la farmacovigilancia y la educación sanitaria</strong> forman parte de una arquitectura mayor orientada a proteger la salud de poblaciones completas.</p>
+      <div class="badge-fin">
+        <span class="badge-icon">🎉</span>
+        <p><strong>¡Felicitaciones! Has completado la Sesión 1.</strong><br>Has analizado el surgimiento histórico de la Salud Pública, los modelos explicativos del proceso salud–enfermedad y la relevancia del legado de John Snow para el ejercicio profesional farmacéutico contemporáneo.</p>
+      </div>
+      <div class="page-nav">
+        <button class="nav-arrow nav-prev" type="button" onclick="goPrevPage()">←</button>
+        <button class="nav-arrow nav-next" type="button" onclick="goNextPage()">→</button>
+      </div>
+    </section>
+
+    <!-- REFERENCIAS -->
+    <section class="page" id="page-referencias">
+      <div class="main-header-ruta">QYFA 1002 &raquo; Referencias</div>
+      <h1>Referencias bibliográficas</h1>
+      <ul>
+        <li>León, L. (2016). Historia y evolución conceptual de la salud pública. <em>Cuadernos Médico Sociales, 56</em>(1), 7–18.</li>
+        <li>Organización Panamericana de la Salud. (2024). <em>Funciones esenciales de salud pública 2024–2034</em>. OPS.</li>
+        <li>Rosen, G. (2015). <em>A history of public health</em>. Johns Hopkins University Press.</li>
+        <li>Winslow, C. E. A. (1920). The untilled fields of public health. <em>Science, 51</em>(1306), 23–33.</li>
+      </ul>
+      <div class="page-nav">
+        <button class="nav-arrow nav-prev" type="button" onclick="goPrevPage()">←</button>
+        <button class="nav-arrow nav-next" type="button" onclick="goNextPage()">→</button>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+/* ============================================================ PORTADA */
+function startCourse(){
+  document.getElementById("portada").style.display="none";
+  document.getElementById("layout").style.display="flex";
+  document.getElementById("hamburger").style.display="flex";
+  updateProgress();
+}
+function goBackToCover(){
+  document.getElementById("layout").style.display="none";
+  document.getElementById("hamburger").style.display="none";
+  document.getElementById("portada").style.display="flex";
+  closeSidebar();
+}
+function toggleSidebar(){ document.getElementById("sidebar").classList.toggle("open"); document.getElementById("overlay").classList.toggle("open"); }
+function closeSidebar(){ document.getElementById("sidebar").classList.remove("open"); document.getElementById("overlay").classList.remove("open"); }
+
+/* ============================================================ NAV */
+const pageOrder=["bienvenida","objetivos","tema1","tema1b","tema2","tema3","tema4","tema5","eval","conclusiones","referencias"];
+const visitedPages=new Set();
+
+function showPage(pageId){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("activa"));
+  const page=document.getElementById("page-"+pageId);
+  if(page) page.classList.add("activa");
+  document.querySelectorAll(".nav-btn").forEach(b=>b.classList.remove("activo"));
+  const btn=document.querySelector(`.nav-btn[data-page="${pageId}"]`);
+  if(btn) btn.classList.add("activo");
+  visitedPages.add(pageId);
+  document.querySelectorAll(".nav-btn").forEach(b=>{
+    if(visitedPages.has(b.dataset.page) && b.dataset.page!==pageId) b.classList.add("visitado");
+  });
+  updateProgress();
+  if(pageId==="tema1") shuffleActivityOptions("q1");
+  if(pageId==="tema4") shuffleActivityOptions("q4");
+  if(pageId==="tema5") shuffleActivityOptions("q5");
+  if(pageId==="eval"){ shuffleActivityOptions("qE1"); shuffleDragItems("sortContainer"); }
+  if(pageId==="tema1b") shuffleSortItems();
+  if(pageId==="tema3") shuffleDragItems("drag-pool-3");
+  closeSidebar();
+  document.querySelector(".main").scrollTo({top:0,behavior:"smooth"});
+}
+function getCurrentPageId(){ const a=document.querySelector(".page.activa"); return a?a.id.replace("page-",""):pageOrder[0]; }
+function goNextPage(){ const i=pageOrder.indexOf(getCurrentPageId()); if(i<pageOrder.length-1) showPage(pageOrder[i+1]); }
+function goPrevPage(){ const i=pageOrder.indexOf(getCurrentPageId()); if(i>0) showPage(pageOrder[i-1]); }
+
+function updateProgress(){
+  const pct=Math.round((visitedPages.size/pageOrder.length)*100);
+  document.getElementById("progressFill").style.width=pct+"%";
+  document.getElementById("progressText").textContent=pct+"%";
+}
+
+/* ============================================================ SHUFFLE MCQ */
+function shuffleActivityOptions(name){
+  const input=document.querySelector(`input[name="${name}"]`);
+  if(!input) return;
+  const form=input.closest("form");
+  const labels=Array.from(form.querySelectorAll("label"));
+  const btn=form.querySelector("button");
+  for(let i=labels.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [labels[i],labels[j]]=[labels[j],labels[i]]; }
+  labels.forEach(l=>form.insertBefore(l,btn));
+}
+
+/* ============================================================ FEEDBACK */
+function showFeedback(id,ok,msg){
+  const fb=document.getElementById(id);
+  fb.className="feedback visible "+(ok?"ok":"error");
+  fb.querySelector(".feedback-icon").textContent=ok?"✅":"❌";
+  fb.querySelector(".feedback-text").textContent=msg;
+}
+
+/* ============================================================ MCQ */
+function checkMCQ(name,correct,fbId,formId){
+  const sel=document.querySelector(`input[name="${name}"]:checked`);
+  if(!sel){ showFeedback(fbId,false,"Debes seleccionar una alternativa."); return; }
+  const form=document.getElementById(formId);
+  form.querySelectorAll("label").forEach(l=>{ const i=l.querySelector("input"); if(i.value===correct) l.classList.add("correct-choice"); else if(i.checked) l.classList.add("wrong-choice"); });
+  const ok=sel.value===correct;
+  showFeedback(fbId,ok, ok?"¡Correcto! Has identificado la respuesta adecuada.":"Respuesta incorrecta. Revisa el contenido y vuelve a intentarlo.");
+  form.querySelectorAll("input").forEach(i=>i.disabled=true);
+  form.querySelector(".btn-verificar").disabled=true;
+}
+
+/* ============================================================ CLASIFICACIÓN */
+function checkClasificacion(actId,fbId){
+  const bloque=document.getElementById(actId);
+  const filas=bloque.querySelectorAll('.clasif-row');
+  let all=true;
+  filas.forEach(f=>{ const c=f.dataset.correcta,s=f.querySelector('select'); f.classList.remove("correct","incorrect"); if(!s.value){all=false;f.classList.add("incorrect");} else if(s.value===c){f.classList.add("correct");} else{f.classList.add("incorrect");all=false;} });
+  showFeedback(fbId,all, all?"¡Muy bien! Identificaste correctamente todos los aportes.":"Hay selecciones incorrectas. Revisa y vuelve a intentarlo.");
+  if(all) bloque.querySelector(".btn-verificar").disabled=true;
+}
+
+/* ============================================================ DRAG & DROP (modelos) */
+let draggedItem=null, originContainer=null;
+function initDragDrop(){
+  function attach(item){
+    item.addEventListener('dragstart',e=>{ draggedItem=item; originContainer=item.parentElement; e.dataTransfer.effectAllowed='move'; setTimeout(()=>item.classList.add("dragging"),0); });
+    item.addEventListener('dragend',()=>{ item.classList.remove("dragging"); draggedItem=null; document.querySelectorAll('.drop-zone').forEach(z=>z.classList.remove("drag-over")); });
+  }
+  document.querySelectorAll('.drag-item').forEach(attach);
+  const zones=[document.getElementById("drag-pool-3"),...document.querySelectorAll('.drop-zone')].filter(Boolean);
+  zones.forEach(zone=>{
+    zone.addEventListener('dragover',e=>{ e.preventDefault(); if(zone.classList.contains('drop-zone')) zone.classList.add("drag-over"); });
+    zone.addEventListener('dragleave',()=>zone.classList.remove("drag-over"));
+    zone.addEventListener('drop',e=>{ e.preventDefault(); zone.classList.remove("drag-over"); if(draggedItem&&zone!==originContainer){ zone.appendChild(draggedItem); draggedItem.classList.remove("dragging"); draggedItem.classList.add("placed","snapped"); setTimeout(()=>draggedItem&&draggedItem.classList.remove("snapped"),300); } });
+  });
+}
+function checkDragDrop3(fbId){
+  const zones=document.querySelectorAll('#act3 .drop-zone');
+  let ok=true;
+  zones.forEach(z=>{ const exp=z.dataset.zone; const items=z.querySelectorAll('.drag-item'); let zOk=items.length>0; items.forEach(i=>{ if(i.dataset.cat!==exp){zOk=false;ok=false;} }); if(!items.length){ok=false;} z.classList.remove("correct","incorrect"); z.classList.add(zOk?"correct":"incorrect"); });
+  showFeedback(fbId,ok, ok?"¡Excelente! Clasificaste correctamente las características de cada modelo.":"Hay relaciones incorrectas. Ajusta las tarjetas y vuelve a intentarlo.");
+}
+
+/* ============================================================ SORT (ordenamiento) */
+let sortDragged=null;
+function initSort(){
+  const container=document.getElementById("sortContainer");
+  if(!container) return;
+  container.querySelectorAll('.sort-item').forEach(item=>{
+    item.addEventListener('dragstart',()=>{ sortDragged=item; setTimeout(()=>item.classList.add("dragging"),0); });
+    item.addEventListener('dragend',()=>{ item.classList.remove("dragging","over"); sortDragged=null; container.querySelectorAll('.sort-item').forEach(i=>i.classList.remove("over")); });
+    item.addEventListener('dragover',e=>{ e.preventDefault(); if(sortDragged&&item!==sortDragged){ item.classList.add("over"); const box=item.getBoundingClientRect(); const mid=box.top+box.height/2; if(e.clientY<mid) container.insertBefore(sortDragged,item); else container.insertBefore(sortDragged,item.nextSibling); } });
+    item.addEventListener('dragleave',()=>item.classList.remove("over"));
+  });
+}
+function shuffleSortItems(){
+  const c=document.getElementById("sortContainer");
+  if(!c) return;
+  const items=Array.from(c.querySelectorAll('.sort-item'));
+  for(let i=items.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [items[i],items[j]]=[items[j],items[i]]; }
+  items.forEach(it=>c.appendChild(it));
+}
+function checkSort(fbId){
+  const c=document.getElementById("sortContainer");
+  const items=Array.from(c.querySelectorAll('.sort-item'));
+  const orders=items.map(i=>parseInt(i.dataset.order));
+  let ok=true;
+  for(let i=0;i<orders.length-1;i++){ if(orders[i]>orders[i+1]){ ok=false; break; } }
+  showFeedback(fbId,ok, ok?"¡Correcto! Los pasos están en el orden metodológico adecuado.":"El orden no es correcto. Recuerda: observación → mapa/hipótesis → intervención → resultado.");
+}
+function shuffleDragItems(containerId){
+  const c=document.getElementById(containerId);
+  if(!c) return;
+  const items=Array.from(c.querySelectorAll('.drag-item,.sort-item'));
+  for(let i=items.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [items[i],items[j]]=[items[j],items[i]]; }
+  items.forEach(it=>c.appendChild(it));
+}
+
+/* ============================================================ INIT */
+document.addEventListener("DOMContentLoaded",()=>{
+  document.querySelectorAll(".nav-btn").forEach(btn=>btn.addEventListener("click",()=>showPage(btn.dataset.page)));
+  visitedPages.add("bienvenida");
+  initDragDrop();
+  initSort();
+});
+</script>
+</body>
+</html>
